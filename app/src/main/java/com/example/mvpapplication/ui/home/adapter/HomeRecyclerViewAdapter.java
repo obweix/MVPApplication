@@ -22,14 +22,17 @@ import com.youth.banner.indicator.CircleIndicator;
 
 import java.util.List;
 
-public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
     private final LayoutInflater layoutInflater;
+    private  RecyclerView recyclerView;
     private  Context context;
     private  List<Goods> data;
+    private OnItemClickListener listener;
 
-    public HomeRecyclerViewAdapter(Context context, List<Goods> data){
+    public HomeRecyclerViewAdapter(RecyclerView recyclerView, Context context, List<Goods> data){
         this.context = context;
         this.data = data;
+        this.recyclerView = recyclerView;
          layoutInflater = LayoutInflater.from(context);
     }
 
@@ -45,6 +48,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =  layoutInflater.inflate(viewType,parent,false);
+        view.setOnClickListener(this);
         if(viewType == R.layout.home_recycler_text_image){
             return new MultiViewHolder(view);
         }
@@ -110,7 +114,15 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 //        return super.getItemViewType(position);
     }
 
-   class SingleViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onClick(View v) {
+        if(listener != null){
+            int position = recyclerView.getChildAdapterPosition(v);
+            listener.onItemClick(data.get(position));
+        }
+    }
+
+    class SingleViewHolder extends RecyclerView.ViewHolder{
 
        public SingleViewHolder(@NonNull View itemView) {
            super(itemView);
@@ -130,6 +142,13 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
        }
    }
 
+   public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.listener = onItemClickListener;
+   }
+
+   public interface OnItemClickListener{
+        void onItemClick(Goods goods);
+   }
 
 
 

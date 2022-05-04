@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/drawable/ic_bottom_home_24.xml" value="0.13541666666666666" />
+        <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/activity_goods_ldetail.xml" value="0.1" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/fragment_cart.xml" value="0.35104166666666664" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/fragment_home.xml" value="0.35104166666666664" />

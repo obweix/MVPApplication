@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.mvpapplication.bean.BaseBean;
 import com.example.mvpapplication.bean.Goods;
+import com.example.mvpapplication.bean.GoodsDetail;
 import com.example.mvpapplication.bean.network.GoodsService;
 import com.example.mvpapplication.bean.network.RetrofitClient;
 import com.example.mvpapplication.bean.network.Team;
@@ -27,19 +28,35 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
 
+//        GoodsService goodsService = RetrofitClient.getInstance().getService(GoodsService.class);
+//
+//        goodsService.getGoods().subscribe(new Consumer<BaseBean<List<Goods>>>() {
+//                                              @Override
+//                                              public void accept(BaseBean<List<Goods>> listBaseBean) throws Throwable {
+//                                                  System.out.println(listBaseBean.toString());
+//                                              }
+//                                          }, new Consumer<Throwable>() {
+//                                              @Override
+//                                              public void accept(Throwable throwable) throws Throwable {
+//                                                  System.out.println("不抛出异常");
+//                                              }
+//                                          }
+//        );
+
         GoodsService goodsService = RetrofitClient.getInstance().getService(GoodsService.class);
 
-        goodsService.getGoods().subscribe(new Consumer<BaseBean<List<Goods>>>() {
-                                              @Override
-                                              public void accept(BaseBean<List<Goods>> listBaseBean) throws Throwable {
-                                                  System.out.println(listBaseBean.toString());
-                                              }
-                                          }, new Consumer<Throwable>() {
-                                              @Override
-                                              public void accept(Throwable throwable) throws Throwable {
-                                                  System.out.println("不抛出异常");
-                                              }
-                                          }
+        goodsService.getGoodsDetail(0).subscribe(new Consumer<BaseBean<GoodsDetail>>() {
+                                                     @Override
+                                                     public void accept(BaseBean<GoodsDetail> goodsDetailBaseBean) throws Throwable {
+                                                         System.out.println(goodsDetailBaseBean.getData().toString());
+                                                     }
+                                                 }, new Consumer<Throwable>() {
+                                                     @Override
+                                                     public void accept(Throwable throwable) throws Throwable {
+                                                        System.out.println(throwable.toString());
+                                                        System.out.println("+++++++++++++++++++++++");
+                                                     }
+                                                 }
         );
 
 
@@ -57,7 +74,6 @@ public class ExampleUnitTest {
 //            System.out.println("test-------------------");
 //            e.printStackTrace();
 //        }
-
 
         while (true) {
 
