@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.mvpapplication.bean.BaseBean;
@@ -28,6 +29,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private Fragment[] fragments;
     private int lastFragmentIndex = 0;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected int getLayoutId() {
@@ -57,10 +60,34 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
               new MineFragment()
       };
 
-      getSupportFragmentManager().beginTransaction().add(R.id.main_frame,fragments[0]).commit();
+     for(Fragment fragment : getSupportFragmentManager().getFragments()){
+        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+     }
+
+      getSupportFragmentManager().beginTransaction().add(R.id.main_frame, fragments[0]).commit();
 
     }
 
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy: MainActivity");
+
+        if(fragments[0].isAdded()){
+            getSupportFragmentManager().beginTransaction()
+                    .remove(fragments[0])
+                    .commitAllowingStateLoss();
+        }
+
+        fragments = null;
+
+        super.onDestroy();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -84,14 +111,15 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             return;
         }
 
-        FragmentTransaction fragmentTransaction =    getSupportFragmentManager()
+        FragmentTransaction fragmentTransaction =  getSupportFragmentManager()
                 .beginTransaction();
         if(!fragments[to].isAdded()){
            fragmentTransaction.add(R.id.main_frame,fragments[to]);
         }else{
             fragmentTransaction.show(fragments[to]);
         }
-        fragmentTransaction.hide(fragments[lastFragmentIndex]).commitAllowingStateLoss();
+//        fragmentTransaction.hide(fragments[lastFragmentIndex]).commitAllowingStateLoss();
+        fragmentTransaction.hide(fragments[lastFragmentIndex]).commit();
 
         lastFragmentIndex = to;
     }

@@ -44,6 +44,7 @@ public class HomeFragement extends BaseFragment implements SwipeRefreshLayout.On
 
          homePresenter = new HomePresenter(this);
          homePresenter.getData();
+        Log.w(TAG, "initView: get Data()");
 
     }
 
@@ -77,5 +78,11 @@ public class HomeFragement extends BaseFragment implements SwipeRefreshLayout.On
         intent.putExtra(GoodsDetailActivity.GOODS_ID,goods.getGoodsId());
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: HomeFragment destroy---------------------------");
+        super.onDestroy();
     }
 }

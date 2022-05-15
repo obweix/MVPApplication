@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/drawable/ic_bottom_home_24.xml" value="0.13541666666666666" />
+        <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/drawable/ic_home_scan_24.xml" value="0.215625" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/activity_goods_ldetail.xml" value="0.1" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/code/android/Study/MVPApplication/app/src/main/res/layout/fragment_cart.xml" value="0.35104166666666664" />
@@ -18,7 +19,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
